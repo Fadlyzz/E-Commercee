@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- Menu Item untuk Halaman Utama -->
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        app:itemIconTint="@color/black" />
+
+    <!-- Menu Item untuk Keranjang -->
+    <item
+        android:id="@+id/nav_cart"
+        android:icon="@drawable/ic_baseline_shopping_cart_24"
+        app:itemIconTint="@color/black" />
+
+</menu>

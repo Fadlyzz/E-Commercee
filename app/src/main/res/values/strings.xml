@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ARKA RESTO</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="txt_login">Login</string>
+    <string name="arka_resto">ARKA RESTO</string>
+</resources>
