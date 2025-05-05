@@ -1,5 +1,7 @@
 package com.android.arka_resto;
 
+import static com.android.arka_resto.R.*;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -7,14 +9,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.android.arka_resto.models.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -55,51 +55,42 @@ public class MainActivity extends AppCompatActivity {
         setupViewPagerAndTabs();
 
         // Load menu data
-        loadMakanan();
-        loadMinuman();
+        loadMakanan();  // Load Makanan
+        loadMinuman();  // Load Minuman
 
         // Handle logo click
         ImageView logoImageView = findViewById(R.id.logoImageView);
-        logoImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to HomeActivity when logo is clicked
-                Intent homeIntent = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(homeIntent);
-            }
+        logoImageView.setOnClickListener(v -> {
+            // Navigate to HomeActivity when logo is clicked
+            Intent homeIntent = new Intent(MainActivity.this, HomeActivity.class);
+            startActivity(homeIntent);
         });
 
         // Handle admin logo click
         ImageView admin = findViewById(R.id.admin);
-        admin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to LoginActivity when admin logo is clicked
-                Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(loginIntent);
-            }
+        admin.setOnClickListener(v -> {
+            // Navigate to LoginActivity when admin logo is clicked
+            Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(loginIntent);
         });
 
         // Handle bottom navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
 
-                if (id == R.id.nav_home) {
-                    // We're already on the main screen
-                    return true;
-                } else if (id == R.id.nav_makanan) {
-                    viewPager.setCurrentItem(0);
-                    return true;
-                } else if (id == R.id.nav_minuman) {
-                    viewPager.setCurrentItem(1);
-                    return true;
-                }
-
-                return false;
+            if (id == R.id.nav_home) {
+                // We're already on the main screen
+                return true;
+            } else if (id == R.id.nav_makanan) {
+                viewPager.setCurrentItem(0);
+                return true;
+            } else if (id == R.id.nav_minuman) {
+                viewPager.setCurrentItem(1);
+                return true;
             }
+
+            return false;
         });
     }
 
@@ -130,42 +121,45 @@ public class MainActivity extends AppCompatActivity {
                 }).attach();
     }
 
+    // Only one definition of loadMakanan method
     private void loadMakanan() {
         progressBar.setVisibility(View.VISIBLE);
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        Call<List<MenuItem>> call = apiService.getMakanan();
+        Call<List<com.android.arka_resto.models.MenuItem>> call = apiService.getMakanan();
 
-        call.enqueue(new Callback<List<MenuItem>>() {
+        call.enqueue(new Callback<List<com.android.arka_resto.models.MenuItem>>() {
             @Override
-            public void onResponse(Call<List<MenuItem>> call, Response<List<MenuItem>> response) {
+            public void onResponse(Call<List<com.android.arka_resto.models.MenuItem>> call, Response<List<com.android.arka_resto.models.MenuItem>> response) {
                 progressBar.setVisibility(View.GONE);
                 if (response.isSuccessful() && response.body() != null) {
-                    List<MenuItem> makananList = response.body();
-                    makananAdapter.updateMenuItems(makananList);
+                    List<com.android.arka_resto.models.MenuItem> makananList = response.body();
+                    makananAdapter.updateMenuItems(makananList);  // Ensure updateMenuItems accepts List<com.android.arka_resto.models.MenuItem>
                 } else {
                     Toast.makeText(MainActivity.this, "Gagal memuat makanan", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<MenuItem>> call, Throwable t) {
+            public void onFailure(Call<List<com.android.arka_resto.models.MenuItem>> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(MainActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+
+    // Keep the loadMinuman method as it is, if needed:
     private void loadMinuman() {
         progressBar.setVisibility(View.VISIBLE);
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        Call<List<MenuItem>> call = apiService.getMinuman();
+        Call<List<com.android.arka_resto.models.MenuItem>> call = apiService.getMinuman();
 
-        call.enqueue(new Callback<List<MenuItem>>() {
+        call.enqueue(new Callback<List<com.android.arka_resto.models.MenuItem>>() {
             @Override
-            public void onResponse(Call<List<MenuItem>> call, Response<List<MenuItem>> response) {
+            public void onResponse(Call<List<com.android.arka_resto.models.MenuItem>> call, Response<List<com.android.arka_resto.models.MenuItem>> response) {
                 progressBar.setVisibility(View.GONE);
                 if (response.isSuccessful() && response.body() != null) {
-                    List<MenuItem> minumanList = response.body();
+                    List<com.android.arka_resto.models.MenuItem> minumanList = response.body();
                     minumanAdapter.updateMenuItems(minumanList);
                 } else {
                     Toast.makeText(MainActivity.this, "Gagal memuat minuman", Toast.LENGTH_SHORT).show();
@@ -173,10 +167,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<MenuItem>> call, Throwable t) {
+            public void onFailure(Call<List<com.android.arka_resto.models.MenuItem>> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(MainActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 }

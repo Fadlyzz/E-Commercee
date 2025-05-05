@@ -21,4 +21,16 @@ public class MenuItem {
     public double getHarga() {
         return harga;
     }
+
+    public void setId(int id) {
+    }
+
+    public void setNama(String name) {
+    }
+
+    public void setHarga(double price) {
+    }
+
+    public void setGambar(String imageUrl) {
+    }
 }

@@ -44,15 +44,15 @@
     <!-- Menu Image -->
     <ImageView
         android:id="@+id/menu_image"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="211dp"
+        android:layout_height="175dp"
         android:layout_marginTop="16dp"
-        android:scaleType="centerCrop"
         android:contentDescription="Menu Image"
-        android:src="@drawable/menu1"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/menu1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <!-- Menu Name -->
     <TextView
@@ -127,6 +127,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="+"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:backgroundTint="@color/teal_200"/>
     </LinearLayout>

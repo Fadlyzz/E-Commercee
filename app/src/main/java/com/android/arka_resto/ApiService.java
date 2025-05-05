@@ -1,8 +1,8 @@
 package com.android.arka_resto;
 
 import com.android.arka_resto.models.LoginResponse;
-import com.android.arka_resto.models.RegisterResponse;
 import com.android.arka_resto.models.MenuItem;
+import com.android.arka_resto.models.RegisterResponse;
 
 import java.util.List;
 import java.util.Map;
@@ -23,5 +23,5 @@ public interface ApiService {
     Call<List<MenuItem>> getMakanan();
 
     @GET("minuman")
-    Call<List<MenuItem>> getMinuman();
+    Call<List<com.android.arka_resto.models.MenuItem>> getMinuman();
 }

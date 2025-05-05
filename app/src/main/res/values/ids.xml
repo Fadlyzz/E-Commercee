@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="recycler_minuman" type="id" />
+    <item name="progress_bar" type="id" />
+    <item name="recycler_makanan" type="id" />
+    <item name="tab_layout" type="id" />
+    <item name="view_pager" type="id" />
+    <item name="recycler_menu" type="id" />
+    <item name="add_to_cart_btn" type="id" />
+    <item name="increment_btn" type="id" />
+    <item name="decrement_btn" type="id" />
+    <item name="menu_quantity" type="id" />
+    <item name="nav_makanan" type="id" />
+    <item name="nav_minuman" type="id" />
+</resources>

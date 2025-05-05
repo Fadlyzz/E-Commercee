@@ -68,9 +68,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         return menuItems.size();
     }
 
-    public void updateMenuItems(List<MenuItem> menuItems) {
-        this.menuItems = menuItems;
-        notifyDataSetChanged();
+    // Updated method to refresh the list of menu items
+    public void updateMenuItems(List<MenuItem> newMenuItems) {
+        this.menuItems = newMenuItems;
+        notifyDataSetChanged();  // Notify the adapter that the data has changed
     }
 
     public static class MenuViewHolder extends RecyclerView.ViewHolder {
